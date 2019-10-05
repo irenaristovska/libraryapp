@@ -1,0 +1,56 @@
+<div class="filter-container row">
+    <div class="col-md-6 filter-container">
+
+    </div>
+    <div class="col-md-6 action-btn-container">
+        <button (click)="addUser()" class="btn config-action-btn">Нов корисник
+                <fa-icon [icon]="['fas', 'plus']" size="sm" ></fa-icon>
+        </button>
+    </div>
+</div>
+<div class="list-container">
+    <table class='table table-hover config-table'>
+        <thead>
+            <tr>
+                <th>Слика</th>
+                <th>Корисничко име</th>
+                <th>Емаил адреса</th>
+                <th class="config-table-action-holder">Акции</th>
+            </tr>
+        </thead>
+        <tr *ngFor="let user of users">
+            <td>
+                    <div class='flex-box'>
+                            <div class='avatar-container'>
+                                <img [src]="getUserImage(user.imageUrl)" class='avatar'>
+                            </div>
+                            <div class='details-container'>
+                                <h4>{{user.firstName}}  {{user.lastName}}</h4>
+                            </div>
+                        </div>
+            </td>
+            <td>
+                {{user.userName}}
+            </td>
+            <td>
+                {{user.email}}
+            </td>
+            <td class='table-actions-container'>
+                    <ng-template #actionsContent>
+                        <ul class='popover-actions-menu'>
+                            <li class='popover-actions-item' (click)="updateUser(user); p.close()">
+                                    <span> Промени </span>
+                            </li>
+                            <li class='popover-actions-item' (click)="deleteUser(user); p.close()">
+                                 <span> Избриши </span>
+                            </li>
+                        </ul>
+                    </ng-template>
+                <a class='icon-action' [ngbPopover]="actionsContent" placement="bottom" #p="ngbPopover">
+                        <fa-icon [icon]="['fas', 'ellipsis-v']" [classes]="['my-icon-class']"></fa-icon>
+                        
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>

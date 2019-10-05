@@ -1,0 +1,48 @@
+<div class='card' *ngIf='book'>
+  <div class='card-header'>
+    {{ book.title }} - {{ book.author }}
+  </div>
+
+  <div class="card-body">
+
+    <div>
+      <button class='btn btn-outline-secondary' (click)='onBack()' style='width:80px'>
+        <i class='fa fa-chevron-left'></i> Назад
+      </button>
+      <button class='btn btn-outline-secondary' (click)='editBook()' *ngIf='!isEditing'>
+        <i class='fa fa-chevron-left'></i> Промени
+      </button>
+      <button class='btn btn-success' (click)='saveBook()' *ngIf='isEditing'>
+        <i class='fa fa-chevron-save'></i> Зачувај
+      </button>
+    </div>
+
+    <table class="table">
+      <tr>
+        <td>Наслов</td>
+        <td>
+          <span *ngIf='!isEditing'> {{book.title}}</span>
+          <input type="text" [(ngModel)]="book.title" *ngIf='isEditing' />
+        </td>
+      </tr>
+      <tr>
+        <td>Оригинален наслов</td>
+        <td>
+          <span *ngIf='!isEditing'> {{book.originalTitle}}</span>
+          <input type="text" [(ngModel)]="book.originalTitle" *ngIf='isEditing' />
+        </td>
+      </tr>
+      <tr>
+        <td>Автор</td>
+        <td>{{book.author}}</td>
+      </tr>
+      <tr>
+        <td>Опис</td>
+        <td>{{book.description}}</td>
+      </tr>
+    </table>
+  </div>
+  <div class='card-footer'>
+
+  </div>
+</div>

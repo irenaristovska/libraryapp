@@ -1,0 +1,48 @@
+<div class="la-container config-container">
+    <div class="content">
+        <div style="margin-top: 30px" class="filter-container row">
+            <div class="col-md-6 filter-container">
+                Пребарај по наслов: <input type='text' [(ngModel)]='listFilter' />
+            </div>
+        </div>
+        <div class="list-container">
+            <table class='table table-hover config-table'>
+                <thead>
+                    <tr>
+                        <th>Слика</th>
+                        <th>Наслов</th>
+                        <th>Автор</th>
+                        <th>Жанр</th>
+                        <th>Издавачка куќа</th>
+                        <th>Број на страници</th>
+                    </tr>
+                </thead>
+                <tr *ngFor="let book of filteredBooks">
+                    <td>
+                        <img [src]="book.imageUrl" alt="book picture" style="height:150px;">
+
+                    </td>
+                    <td>
+                        {{book.title}}
+                    </td>
+                    <td>
+                        <span *ngFor="let author of book.authors; let last = last;">
+                            {{author.fullName}} <span *ngIf="!last">, </span>
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngFor="let genre of book.genres; let last = last;">
+                            {{genre.title}} <span *ngIf="!last">, </span>
+                        </span>
+                    </td>
+                    <td>
+                        {{book.publishingHouse}}
+                    </td>
+                    <td>
+                        {{book.pagesNum}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
